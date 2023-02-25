@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <button onclick="mainSub()">start</button>
+    <ol id="emploee-students">
+    </ol>>
+    <script>  
+        (function () {
+            fetch("https://catfact.ninja/fact")
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                    document.getElementById("input-result").value=result.fact
+                })
+        })() 
+        function mainSub() {
+            const dtoIn = {
+                count: 50,
+                age: {
+                    min: 50,
+                    max: 80
+                }
+            }
+            let dtoOut = main(dtoIn)
+            const elementUL = document.getElementById("emploee-students")
+                dtoOut.forEach( (element,index) => {
+                    let elementLI = document.createElement("li")
+                    elementLI.appendChild(document.createTextNode(element.name + " " + element.surname))
+                    let nestedList = document.createElement("ul")
+                    let elementLI1 = document.createElement("li")
+                    elementLI1.appendChild(document.createTextNode(element.gender))
+                    let elementLI2 = document.createElement("li")
+                    elementLI2.appendChild(document.createTextNode(element.birthdate))
+                    let elementLI3 = document.createElement("li")
+                    elementLI3.appendChild(document.createTextNode(element.workload))
+                    nestedList.appendChild(elementLI1)
+                    nestedList.appendChild(elementLI2)
+                    nestedList.appendChild(elementLI3)
+                    elementLI.appendChild(nestedList)
+                    elementUL.appendChild(elementLI)
+
+
+                }) 
+        }
+    </script>    
+</body>
+</html>
