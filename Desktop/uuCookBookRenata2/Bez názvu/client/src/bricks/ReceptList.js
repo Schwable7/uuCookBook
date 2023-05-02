@@ -8,13 +8,15 @@ import Form from "react-bootstrap/Form";
 
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
+import styles from "../css/receptList.module.css";
+
 function ReceptList (props) {
     const [viewType, setViewType] = useState("grid");
     const isGrid = viewType === "grid";
     const [searchBy, setSearchBy] = useState("");
     
     const filteredReceptList = useMemo(() => {
-        return props.receptList.filter((item) => {
+        return props.cookbook.receptList.filter((item) => {
           return (
             item.receptname
               .toLocaleLowerCase()
@@ -22,7 +24,7 @@ function ReceptList (props) {
             item.description.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
           );
         });
-      }, [searchBy]);
+      }, [searchBy,props.cookbook.receptList]);
     
       function handleSearch(event) {
         event.preventDefault();
