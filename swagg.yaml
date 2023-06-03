@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /recipe:
+    get:
+      summary: Get all recipes
+      operationId: getRecipes
+      tags:
+        - recipe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeData'
+    post:
+      summary: Create new recipe
+      operationId: createRecipe
+      tags:
+        - recipe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeData'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeData'
+  /recipe/{id}:
+    get:
+      summary: Get recipe by ID
+      operationId: getRecipe
+      tags:
+        - recipe
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeData'
+    put:
+      summary: Update recipe
+      operationId: updateRecipe
+      tags:
+        - recipe
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeData'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeData'
+
+    delete:
+      summary: Delete recipe
+      operationId: deleteRecipe
+      tags:
+        - recipe
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+        '404':
+          description: Not Found
+
+  /ingredient:
+    get:
+      summary: Get all ingredients
+      operationId: getIngredients
+      tags:
+        - ingredient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IngredientData'
+    post:
+      summary: Create new ingredient
+      operationId: createIngredient
+      tags:
+        - ingredient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredientData'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientData'
+  /ingredient/{id}:
+    get:
+      summary: Get ingredient by ID
+      operationId: getIngredient
+      tags:
+        - ingredient
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientData'
+    put:
+      summary: Update ingredient
+      operationId: updateIngredient
+      tags:
+        - ingredient
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredientData'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientData'
+    delete:
+      summary: Delete ingredient
+      operationId: deleteIngredient
+      tags:
+        - ingredient
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+        '404':
+          description: Not Found
+
+
+components:
+  schemas:
+    RecipeData:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "nazev receptu"
+        description:
+          type: string
+          example: "popis lahodneho receptu"
+        imgUri:
+          type: string
+          example: "www.obrazky.cz/cestakobrazku.jpg"
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientsInRecipeData'
+    IngredientData:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5f9b0b5a9d9b1c0001c3b0a0"
+        name:
+          type: string
+          example: "nazev ingredience"
+    IngredientsInRecipeData:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5f9b0b5a9d9b1c0001c3b0a0"
+        amount:
+          type: integer
+          example: 30
+        unit:
+          type: string
+          example: "ks"
+
+
+
