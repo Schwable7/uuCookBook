@@ -28,11 +28,11 @@ class IngredientDao {
     return result;
   }
 
-  async updateIngredient(ingredient) {
+  async updateIngredient(ingredient, id) {
     let ingredientlist = await this._loadAllIngredients();
-    const ingredientIndex = ingredientlist.findIndex((b) => b.id === ingredient.id);
+    const ingredientIndex = ingredientlist.findIndex((b) => b.id === id);
     if (ingredientIndex < 0) {
-      throw new Error(`Ingredient with given id ${ingredient.id} does not exists.`);
+      throw new Error(`Ingredient with given id ${id} does not exists.`);
     } else {
       ingredientlist[ingredientIndex] = {
         ...ingredientlist[ingredientIndex],

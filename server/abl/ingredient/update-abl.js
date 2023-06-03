@@ -17,10 +17,11 @@ let schema = {
 async function UpdateAbl(req, res) {
   try {
     const ajv = new Ajv();
+    const id = req.params.id;
     let ingredient = req.body;
     const valid = ajv.validate(schema, ingredient);
     if (valid) {
-      ingredient = await dao.updateIngredient(ingredient);
+      ingredient = await dao.updateIngredient(ingredient, id);
       res.json(ingredient);
     } else {
       res.status(400).send({

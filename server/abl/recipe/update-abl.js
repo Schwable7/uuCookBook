@@ -33,12 +33,13 @@ let schema = {
       ]
     }
   },
-  required: ["id"],
+  required: ["id", "name", "description", "ingredients"],
 };
 
 async function UpdateAbl(req, res) {
   try {
     const ajv = new Ajv();
+    const id = req.params.id;
     let recipe = req.body;
     const valid = ajv.validate(schema, recipe);
     if (valid) {
@@ -54,7 +55,7 @@ async function UpdateAbl(req, res) {
         }
       }
 
-      recipe = await dao.updateRecipe(recipe);
+      recipe = await dao.updateRecipe(recipe, id);
       res.json(recipe);
     } else {
       res.status(400).send({

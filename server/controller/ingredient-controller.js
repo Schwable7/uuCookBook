@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
   await GetAbl(req, res);
 });
 
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   await UpdateAbl(req, res);
 });
 
