@@ -15,16 +15,16 @@ let schema = {
 
 async function DeleteAbl(req, res) {
   const ajv = new Ajv();
-  const valid = ajv.validate(schema, req.body);
+  const valid = ajv.validate(schema, req.params);
   try {
     if (valid) {
-      const recipeId = req.body.id;
+      const recipeId = req.params.id;
       await dao.deleteRecipe(recipeId);
       res.json({});
     } else {
       res.status(400).send({
         errorMessage: "validation of input failed",
-        params: req.body,
+        params: req.params,
         reason: ajv.errors,
       });
     }

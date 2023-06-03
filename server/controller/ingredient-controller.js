@@ -7,23 +7,23 @@ const UpdateAbl = require("../abl/ingredient/update-abl");
 const DeleteAbl = require("../abl/ingredient/delete-abl");
 const ListAbl = require("../abl/ingredient/list-abl");
 
-router.post("/create", async (req, res) => {
+router.post("/", async (req, res) => {
   await CreateAbl(req, res);
 });
 
-router.get("/get", async (req, res) => {
+router.get("/:id", async (req, res) => {
   await GetAbl(req, res);
 });
 
-router.post("/update", async (req, res) => {
+router.put("/", async (req, res) => {
   await UpdateAbl(req, res);
 });
 
-router.post("/delete", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   await DeleteAbl(req, res);
 });
 
-router.get("/list", async (req, res) => {
+router.get("/", async (req, res) => {
   await ListAbl(req, res);
 });
 

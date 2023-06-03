@@ -16,10 +16,9 @@ let schema = {
 async function GetAbl(req, res) {
   try {
     const ajv = new Ajv();
-    const body = req.query.id ? req.query : req.body;
-    const valid = ajv.validate(schema, body);
+    const valid = ajv.validate(schema, req.params);
     if (valid) {
-      const ingredientId = body.id;
+      const ingredientId = req.params.id;
       const ingredient = await dao.getIngredient(ingredientId);
       if (!ingredient) {
         res
@@ -30,7 +29,7 @@ async function GetAbl(req, res) {
     } else {
       res.status(400).send({
         errorMessage: "validation of input failed",
-        params: body,
+        params: req.params,
         reason: ajv.errors,
       });
     }
