@@ -16,7 +16,7 @@ function ReceptList (props) {
     const filteredReceptList = useMemo(() => {
         return props.receptList.filter((item) => {
           return (
-            item.receptname
+            item.name
               .toLocaleLowerCase()
               .includes(searchBy.toLocaleLowerCase()) ||
             item.description.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
@@ -36,7 +36,7 @@ function ReceptList (props) {
     return(
         <div>
             <Navbar bg="light">
-                <div classname="cotainer-fluid">
+                <div className="cotainer-fluid">
                     <Navbar.Brand>Seznam receptu</Navbar.Brand>
                     <div>
             <Form className="d-flex" onSubmit={handleSearch}>

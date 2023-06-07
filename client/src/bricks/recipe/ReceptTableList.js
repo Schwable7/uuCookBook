@@ -14,7 +14,7 @@ function ReceptTableList(props) {
         {props.receptList.map((recept) => {
           return (
             <tr key={recept.id}>
-              <td>{recept.receptname}</td>
+              <td>{recept.name}</td>
               <td>{recept.description}</td>
             </tr>
           );
