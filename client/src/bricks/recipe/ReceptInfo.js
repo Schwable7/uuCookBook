@@ -6,7 +6,7 @@ class ReceptInfo extends React.Component {
     return (
     <h1>
         Kniha {" "}
-        <span name={styles.cookbookNameHeader}>
+        <span className={styles.cookbookNameHeader}>
         {this.props.cookbook.name}
         </span>
         </h1>

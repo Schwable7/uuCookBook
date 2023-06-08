@@ -4,7 +4,8 @@ function Ingredient(props) {
     return (
         //TODO zobrazit nazev ingredience
         <div key={props.ingredient.id}>
-            <span>{"nazev ingredience"}: {props.ingredient.amount} {props.ingredient.unit}</span>
+
+            <li>{props.ingredientName}: {props.ingredient.amount} {props.ingredient.unit}</li>
         </div>
     );
 }
