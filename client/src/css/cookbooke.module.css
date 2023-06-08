@@ -3,3 +3,10 @@
     padding: 4px 12px;
     border-radius: 8px;
   }
+
+.card {
+    margin: 30px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #FFECC9;
+  }
