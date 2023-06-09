@@ -69,7 +69,7 @@ function ReceptList(props) {
                                         })
                                     }
                                 >
-                                    {isGrid ? "Tabulka" : "grid"}
+                                    {isGrid ? "Tabulka" : "Grid"}
                                 </Button>
                             </Form>
                         </div>

@@ -4,7 +4,7 @@ import Icon from "@mdi/react";
 import {mdiLoading} from "@mdi/js";
 import ReceptList from "../bricks/recipe/ReceptList";
 
-function RecipeList() {
+function Recipes() {
     const [recipeLoadCall, setRecipeLoadCall] = useState({
         state: "pending",
     });
@@ -69,4 +69,4 @@ function RecipeList() {
     return <div> {getRecipes()} </div>
 }
 
-export default RecipeList;
+export default Recipes;
