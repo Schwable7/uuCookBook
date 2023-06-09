@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./css/cookbooke.module.css";
 import {Container, Nav, Offcanvas, Navbar, NavDropdown} from "react-bootstrap";
 import {Outlet, useNavigate} from "react-router-dom";
+import ReceptForm from "./bricks/recipe/ReceptForm";
 
 
 const cookbook = {
@@ -17,6 +18,27 @@ const cookbook = {
 
 function App() {
     let navigate = useNavigate();
+
+    const [isModalShown, setShow] = useState(false);
+
+    const [ingredientLoadCall, setIngredientLoadCall] = useState({
+        state: "pending",
+    });
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/ingredient/list`, {
+            method: "GET",
+        }).then(async (response) => {
+            const responseJson = await response.json();
+            if (response.status >= 400) {
+                setIngredientLoadCall({state: "error", error: responseJson});
+            } else {
+                setIngredientLoadCall({state: "success", data: responseJson});
+            }
+        });
+    }, []);
+
+
 
     function getMenuDropdown() {
         return (
@@ -57,13 +79,14 @@ function App() {
                                 <Nav.Link onClick={() => navigate("/recipeList")}>
                                     Recepty
                                 </Nav.Link>
-                                <Nav.Link>
+                                <Nav.Link onClick={() => setShow(true)}>
                                     Vytvořit recept
                                 </Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
+                <ReceptForm ingredientList={ingredientLoadCall.data ? ingredientLoadCall.data : []} show={isModalShown} setAddRecipeShow={setShow} onHide={() => setShow(false)}/>
             </Navbar>
 
             <Outlet/>

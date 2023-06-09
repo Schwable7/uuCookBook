@@ -15,7 +15,7 @@ function ReceptDetail(props) {
 
     return (
         <>
-            <Modal show={isModalShown} onHide={handleCloseModal}>
+            <Modal show={isModalShown} onHide={handleCloseModal} size={"lg"}>
                 <Modal.Header closeButton>
                     <Modal.Title>{props.recipe.name}</Modal.Title>
                 </Modal.Header>
