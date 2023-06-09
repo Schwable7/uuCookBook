@@ -4,17 +4,25 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function ReceptForm({ingredientList, setAddRecipeShow, show}) {
-    const [formData, setFormData] = useState({
+    let initialState = {
         name: "",
         description: "",
         imgUri: "",
         ingredients: [{
-            ingredientId: "",
-            amount: "",
+            id: "",
+            amount: 0,
             unit: ""
         }]
+    };
+    const [formData, setFormData] = useState(initialState);
+    const handleClose = () => {
+        setAddRecipeShow(false);
+        setFormData(initialState);
+    }
+
+    const [recipeAddCall, setRecipeAddCall] = useState({
+        state: 'inactive'
     });
-    const handleClose = () => setAddRecipeShow(false);
 
     const setIngredientId = (ingredientId, index) => {
         setFormData((formData) => {
@@ -22,7 +30,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
             if (newData.ingredients[index] === undefined) {
                 newData.ingredients[index] = {};
             }
-            newData.ingredients[index].ingredientId = ingredientId;
+            newData.ingredients[index].id = ingredientId;
             return newData;
         });
     }
@@ -30,7 +38,10 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
     const setAmount = (amount, index) => {
         setFormData((formData) => {
             const newData = {...formData};
-            newData.ingredients[index].amount = amount;
+            if (newData.ingredients[index] === undefined) {
+                newData.ingredients[index] = {};
+            }
+            newData.ingredients[index].amount = Number(amount);
             return newData;
         });
     }
@@ -38,6 +49,9 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
     const setUnit = (unit, index) => {
         setFormData((formData) => {
             const newData = {...formData};
+            if (newData.ingredients[index] === undefined) {
+                newData.ingredients[index] = {};
+            }
             newData.ingredients[index].unit = unit;
             return newData;
         });
@@ -60,6 +74,23 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
             ...formData,
         };
         console.log(payload);
+
+        setRecipeAddCall({state: 'pending'});
+        const response = await fetch('http://localhost:3000/recipe/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const responseJson = await response.json();
+        if (response.status >= 400) {
+            setRecipeAddCall({state: 'error', error: responseJson});
+        } else {
+            setRecipeAddCall({state: 'success', data: responseJson});
+            handleClose();
+        }
     };
 
     return (
@@ -77,6 +108,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setField("name", e.target.value)}
+                                required
                             />
                         </Form.Group>
 
@@ -86,6 +118,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                                 type="textarea"
                                 value={formData.description}
                                 onChange={(e) => setField("description", e.target.value)}
+                                required
                             />
                         </Form.Group>
 
@@ -102,7 +135,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Label>Ingredience</Form.Label>
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 0)}
                                     >
                                         <option value=""></option>
@@ -132,7 +165,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 1)}
                                     >
                                         <option value=""></option>
@@ -160,7 +193,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 2)}
                                     >
                                         <option value=""></option>
@@ -188,7 +221,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 3)}
                                     >
                                         <option value=""></option>
@@ -216,7 +249,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 4)}
                                     >
                                         <option value=""></option>
@@ -244,7 +277,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 5)}
                                     >
                                         <option value=""></option>
@@ -272,7 +305,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Select
-                                        value={formData.ingredients.id || ""}
+                                        value={formData.ingredients.id}
                                         onChange={(e) => setIngredientId(e.target.value, 6)}
                                     >
                                         <option value=""></option>
