@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./routes/Home";
 import Recipes from "./routes/Recipes";
-import RecipeDetail from "./routes/RecipeDetail";
-import ReceptForm from "./bricks/recipe/ReceptForm";
+import Ingredients from "./routes/Ingredients";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +16,7 @@ root.render(
                 <Route path="/" element={<App/>}>
                     <Route path="" element={<Home/>}/>
                     <Route path="recipeList" element={<Recipes/>}/>
+                    <Route path="ingredientList" element={<Ingredients/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

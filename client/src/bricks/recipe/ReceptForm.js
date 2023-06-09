@@ -15,6 +15,7 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
         }]
     };
     const [formData, setFormData] = useState(initialState);
+
     const handleClose = () => {
         setAddRecipeShow(false);
         setFormData(initialState);
@@ -116,6 +117,8 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Form.Label>Popis</Form.Label>
                             <Form.Control
                                 type="textarea"
+                                as={"textarea"}
+                                rows={3}
                                 value={formData.description}
                                 onChange={(e) => setField("description", e.target.value)}
                                 required

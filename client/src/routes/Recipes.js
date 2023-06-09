@@ -5,6 +5,7 @@ import {mdiLoading} from "@mdi/js";
 import ReceptList from "../bricks/recipe/ReceptList";
 
 function Recipes() {
+
     const [recipeLoadCall, setRecipeLoadCall] = useState({
         state: "pending",
     });
@@ -50,7 +51,7 @@ function Recipes() {
             case "success":
                 return (
                     <>
-                        <ReceptList receptList={recipeLoadCall.data} ingredientList={ingredientLoadCall.data}/>
+                        <ReceptList receptList={recipeLoadCall.data} ingredientList={ingredientLoadCall.data ? ingredientLoadCall.data : []}/>
                     </>
                 );
             case "error":

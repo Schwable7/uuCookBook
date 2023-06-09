@@ -9,11 +9,13 @@ import Form from "react-bootstrap/Form";
 
 import Icon from "@mdi/react";
 import {mdiMagnify} from "@mdi/js";
+import ReceptForm from "./ReceptForm";
 
 function ReceptList(props) {
     const [viewType, setViewType] = useState("grid");
     const isGrid = viewType === "grid";
     const [searchBy, setSearchBy] = useState("");
+    const [isModalShown, setShow] = useState(false);
 
     const filteredReceptList = useMemo(() => {
         return props.receptList.filter((item) => {
@@ -38,15 +40,15 @@ function ReceptList(props) {
     return (
         <div>
             <Navbar collapseOnSelect expand="sm" bg="light">
-                <div className="cotainer-fluid">
-                    <Navbar.Brand>Seznam receptu</Navbar.Brand>
+                <div className="container-fluid">
+                    <Navbar.Brand>Seznam receptů</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                    <Navbar.Collapse style={{justifyContent: "right"}}>
-                        <div>
+                    <Navbar.Collapse>
+                        <div className="d-flex justify-content-between align-items-center w-100">
                             <Form className="d-flex" onSubmit={handleSearch}>
                                 <Form.Control
                                     id={"searchInput"}
-                                    style={{maxWidth: "150px"}}
+                                    style={{width: "300px"}}
                                     type="search"
                                     placeholder="Search"
                                     aria-label="Search"
@@ -72,10 +74,19 @@ function ReceptList(props) {
                                     {isGrid ? "Tabulka" : "Grid"}
                                 </Button>
                             </Form>
+                            <Button
+                                style={{marginRight: "8px"}}
+                                variant="outline-success"
+                                type="submit"
+                                onClick={() => setShow(true)}
+                            >
+                                Vytvořit recept
+                            </Button>
                         </div>
                     </Navbar.Collapse>
                 </div>
             </Navbar>
+
             {/*<div className={styles.studentList}>*/}
             {/*    {filteredReceptList.length ? (*/}
             {/*        <div className="container">*/}
@@ -104,6 +115,8 @@ function ReceptList(props) {
             ) : (
                 <ReceptTableList receptList={filteredReceptList}/>
             )}
+
+            <ReceptForm ingredientList={props.ingredientList} show={isModalShown} setAddRecipeShow={setShow} onHide={() => setShow(false)}/>
         </div>
     )
 }
