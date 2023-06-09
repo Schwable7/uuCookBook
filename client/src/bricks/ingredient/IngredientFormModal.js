@@ -3,7 +3,7 @@ import {Modal} from "react-bootstrap";
 import {useState} from "react";
 import Button from "react-bootstrap/Button";
 
-function IngredientForm({show, setAddIngredientShow}) {
+function IngredientFormModal({show, setAddIngredientShow}) {
     let initialState = {
         name: "",
     };
@@ -82,4 +82,4 @@ function IngredientForm({show, setAddIngredientShow}) {
     );
 }
 
-export default IngredientForm;
+export default IngredientFormModal;

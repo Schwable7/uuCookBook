@@ -16,6 +16,7 @@ let schema = {
     name: { type: "string" },
     description: { type: "string" },
     imgUri: { type: "string" },
+    prepTime: { type: "number" },
     ingredients: {
       type: "array",
       minItems: 0,

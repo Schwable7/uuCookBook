@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 
 import Icon from "@mdi/react";
 import {mdiMagnify} from "@mdi/js";
-import ReceptForm from "./ReceptForm";
+import ReceptFormModal from "./ReceptFormModal";
 
 function ReceptList(props) {
     const [viewType, setViewType] = useState("grid");
@@ -116,7 +116,7 @@ function ReceptList(props) {
                 <ReceptTableList receptList={filteredReceptList}/>
             )}
 
-            <ReceptForm ingredientList={props.ingredientList} show={isModalShown} setAddRecipeShow={setShow} onHide={() => setShow(false)}/>
+            <ReceptFormModal ingredientList={props.ingredientList} show={isModalShown} setAddRecipeShow={setShow} onHide={() => setShow(false)}/>
         </div>
     )
 }

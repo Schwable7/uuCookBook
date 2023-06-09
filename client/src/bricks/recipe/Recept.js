@@ -1,28 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import Card from "react-bootstrap/Card"
 import styles from "../../css/cookbooke.module.css";
-import ReceptDetail from "./ReceptDetail";
+import ReceptDetailModal from "./ReceptDetailModal";
 
 
-class Recept extends React.Component {
-    render() {
+function Recept (props) {
+
         return (
             <Card className={styles.recipeCard}>
-                <Card.Img variant="top" src={this.props.recept.imgUri}/>
+                <Card.Img variant="top" src={props.recept.imgUri}/>
                 <Card.Body>
                     <div>
-                        <Card.Title>{this.props.recept.name} </Card.Title>
-                        <Card.Text className={styles.cardText}> {this.props.recept.description} </Card.Text>
-                        <ReceptDetail
-                            recipe={this.props.recept}
-                            ingredients={this.props.recept.ingredients}
-                            ingredientList={this.props.ingredientlist}
+                        <Card.Title>{props.recept.name} </Card.Title>
+                        <Card.Text className={styles.cardText}> {props.recept.description} </Card.Text>
+                        <Card.Subtitle>Doba přípravy: {props.recept.prepTime} minut</Card.Subtitle>
+                        <ReceptDetailModal
+                            recipe={props.recept}
+                            ingredients={props.recept.ingredients}
+                            ingredientList={props.ingredientlist}
                         />
                     </div>
                 </Card.Body>
             </Card>
         );
-    }
+
 }
 
 export default Recept;

@@ -3,11 +3,12 @@ import {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function ReceptForm({ingredientList, setAddRecipeShow, show}) {
+function ReceptFormModal({ingredientList, setAddRecipeShow, show}) {
     let initialState = {
         name: "",
         description: "",
         imgUri: "",
+        prepTime: 0,
         ingredients: [{
             id: "",
             amount: 0,
@@ -130,6 +131,16 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
                             <Form.Control
                                 value={formData.imgUri}
                                 onChange={(e) => setField("imgUri", e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Doba přípravy v minutách</Form.Label>
+                            <Form.Control
+                                type="number"
+                                value={formData.prepTime}
+                                onChange={(e) => setField("prepTime", e.target.value)}
+                                required
                             />
                         </Form.Group>
 
@@ -351,4 +362,4 @@ function ReceptForm({ingredientList, setAddRecipeShow, show}) {
     );
 }
 
-export default ReceptForm;
+export default ReceptFormModal;

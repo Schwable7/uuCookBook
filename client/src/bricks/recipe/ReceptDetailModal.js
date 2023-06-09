@@ -7,7 +7,7 @@ import IngredientList from "../ingredient/IngredientList";
 
 
 
-function ReceptDetail(props) {
+function ReceptDetailModal(props) {
     const [isModalShown, setShow] = useState(false);
 
     const handleShowModal = () => setShow(true);
@@ -23,10 +23,14 @@ function ReceptDetail(props) {
                     <div>
                         <img src={props.recipe.imgUri} alt="recept" style={{maxWidth: "100%"}} />
                     </div>
+                    <br/>
                     <div>
                         <p>{props.recipe.description}</p>
                     </div>
                     <div>
+                        <b>Doba přípravy:</b> {props.recipe.prepTime} minut
+                        <br/>
+                        <br/>
                         <b>Ingredience:</b>
                         <IngredientList ingredients={props.recipe.ingredients} ingredientList={props.ingredientList} />
                     </div>
@@ -36,6 +40,7 @@ function ReceptDetail(props) {
                 </Modal.Footer>
             </Modal>
 
+            <br/>
             <Icon
                 path={mdiOpenInNew}
                 style={{ color: "grey", cursor: "pointer" }}
@@ -46,4 +51,4 @@ function ReceptDetail(props) {
     )
 }
 
-export default ReceptDetail;
+export default ReceptDetailModal;

@@ -5,7 +5,7 @@ import styles from "../css/cookbooke.module.css";
 import IngredientGridList from "../bricks/ingredient/IngredientGridList";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import IngredientForm from "../bricks/ingredient/IngredientForm";
+import IngredientFormModal from "../bricks/ingredient/IngredientFormModal";
 
 
 function Ingredients() {
@@ -81,7 +81,7 @@ function Ingredients() {
 
             {getIngredients()}
 
-            <IngredientForm show={isModalShown} setAddIngredientShow={setShow} onHide={() => setShow(false)}/>
+            <IngredientFormModal show={isModalShown} setAddIngredientShow={setShow} onHide={() => setShow(false)}/>
         </div>
     );
 }
