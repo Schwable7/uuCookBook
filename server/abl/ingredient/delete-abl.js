@@ -2,7 +2,7 @@ const path = require("path");
 const Ajv = require("ajv").default;
 const IngredientDao = require("../../dao/ingredient-dao");
 let dao = new IngredientDao(
-  path.join(__dirname, "..", "..", "storage", "ingredients.json")
+    path.join(__dirname, "..", "..", "storage", "ingredients.json")
 );
 
 let schema = {
@@ -15,16 +15,16 @@ let schema = {
 
 async function DeleteAbl(req, res) {
   const ajv = new Ajv();
-  const valid = ajv.validate(schema, req.params);
+  const valid = ajv.validate(schema, req.body);
   try {
     if (valid) {
-      const ingredientId = req.params.id;
+      const ingredientId = req.body.id;
       await dao.deleteIngredient(ingredientId);
       res.json({});
     } else {
       res.status(400).send({
         errorMessage: "validation of input failed",
-        params: req.params,
+        params: req.body,
         reason: ajv.errors,
       });
     }

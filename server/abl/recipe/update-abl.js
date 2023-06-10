@@ -2,12 +2,12 @@ const path = require("path");
 const Ajv = require("ajv").default;
 const RecipeDao = require("../../dao/recipe-dao");
 let dao = new RecipeDao(
-  path.join(__dirname, "..", "..", "storage", "recipes.json")
+    path.join(__dirname, "..", "..", "storage", "recipes.json")
 );
 
 const IngredientDao = require("../../dao/ingredient-dao");
 let ingredientDao = new IngredientDao(
-  path.join(__dirname, "..", "..", "storage", "ingredients.json")
+    path.join(__dirname, "..", "..", "storage", "ingredients.json")
 );
 
 let schema = {
@@ -33,13 +33,12 @@ let schema = {
       ]
     }
   },
-  required: ["id", "name", "description", "ingredients"],
+  required: ["id"],
 };
 
 async function UpdateAbl(req, res) {
   try {
     const ajv = new Ajv();
-    const id = req.params.id;
     let recipe = req.body;
     const valid = ajv.validate(schema, recipe);
     if (valid) {
@@ -51,11 +50,11 @@ async function UpdateAbl(req, res) {
             errorMessage: "ingredient with id " + ingredient.id + " does not exist",
             params: req.body,
           });
-          return; 
+          return;
         }
       }
 
-      recipe = await dao.updateRecipe(recipe, id);
+      recipe = await dao.updateRecipe(recipe);
       res.json(recipe);
     } else {
       res.status(400).send({
