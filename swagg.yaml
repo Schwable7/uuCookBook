@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'https'
 paths:
-  /recipe:
+  /recipe/list:
     get:
       summary: Get all recipes
       operationId: getRecipes
@@ -21,6 +21,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RecipeData'
+  /recipe/create:
     post:
       summary: Create new recipe
       operationId: createRecipe
@@ -38,7 +39,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecipeData'
-  /recipe/{id}:
+  /recipe/get:
     get:
       summary: Get recipe by ID
       operationId: getRecipe
@@ -57,6 +58,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecipeData'
+  /recipe/update:
     put:
       summary: Update recipe
       operationId: updateRecipe
@@ -81,6 +83,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RecipeData'
 
+  /recipe/delete:
     delete:
       summary: Delete recipe
       operationId: deleteRecipe
@@ -98,7 +101,7 @@ paths:
         '404':
           description: Not Found
 
-  /ingredient:
+  /ingredient/list:
     get:
       summary: Get all ingredients
       operationId: getIngredients
@@ -113,6 +116,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/IngredientData'
+  /ingredient/create:
     post:
       summary: Create new ingredient
       operationId: createIngredient
@@ -130,7 +134,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IngredientData'
-  /ingredient/{id}:
+  /ingredient/get:
     get:
       summary: Get ingredient by ID
       operationId: getIngredient
@@ -149,6 +153,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IngredientData'
+  /ingredient/update:
     put:
       summary: Update ingredient
       operationId: updateIngredient
@@ -172,6 +177,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IngredientData'
+  /ingredient/delete:
     delete:
       summary: Delete ingredient
       operationId: deleteIngredient
@@ -204,6 +210,9 @@ components:
         imgUri:
           type: string
           example: "www.obrazky.cz/cestakobrazku.jpg"
+        prepTime:
+          type: integer
+          example: 30
         ingredients:
           type: array
           items:
