@@ -14,6 +14,16 @@ function Recipes() {
         state: "pending",
     });
 
+    const handleRecipeAdded = (recipe) => {
+        if (recipeLoadCall.state === "success") {
+            setRecipeLoadCall({
+            state: "success",
+            data: [...recipeLoadCall.data, recipe]
+          });
+        }
+      }
+
+
     useEffect(() => {
         fetch(`http://localhost:3000/recipe/list`, {
             method: "GET",
@@ -51,7 +61,7 @@ function Recipes() {
             case "success":
                 return (
                     <>
-                        <ReceptList receptList={recipeLoadCall.data} ingredientList={ingredientLoadCall.data ? ingredientLoadCall.data : []}/>
+                        <ReceptList receptList={recipeLoadCall.data} ingredientList={ingredientLoadCall.data ? ingredientLoadCall.data : []} onComplete={(recipe) => handleRecipeAdded(recipe)} />
                     </>
                 );
             case "error":

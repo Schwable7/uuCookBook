@@ -1,12 +1,13 @@
 import React from "react";
 
-function Ingredient(props) {
-    return (
-        <div key={props.ingredient.id}>
-
-            <li>{props.ingredientName}: {props.ingredient.amount} {props.ingredient.unit}</li>
-        </div>
-    );
+function Ingredient({ ingredient, ingredientName, multipliedAmount }) {
+  return (
+    <div key={ingredient.id}>
+      <li>
+        {ingredientName}: {multipliedAmount} {ingredient.unit}
+      </li>
+    </div>
+  );
 }
 
 export default Ingredient;

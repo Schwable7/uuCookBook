@@ -3,7 +3,7 @@ import {Modal} from "react-bootstrap";
 import {useState} from "react";
 import Button from "react-bootstrap/Button";
 
-function IngredientFormModal({show, setAddIngredientShow}) {
+function IngredientFormModal({show, setAddIngredientShow, onComplete}) {
     let initialState = {
         name: "",
     };
@@ -42,6 +42,9 @@ function IngredientFormModal({show, setAddIngredientShow}) {
             setIngredientAddCall({state: 'error', error: responseJson});
         } else {
             setIngredientAddCall({state: 'success', data: responseJson});
+            if (typeof onComplete === 'function') {
+                onComplete(responseJson);
+              }
             handleClose();
         }
 

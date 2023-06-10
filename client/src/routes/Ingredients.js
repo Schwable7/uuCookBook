@@ -16,6 +16,15 @@ function Ingredients() {
 
     const [isModalShown, setShow] = useState(false);
 
+    const handleIngredientAdded = (ingredient) => {
+        if (ingredientLoadCall.state === "success") {
+            setIngredientLoadCall({
+            state: "success",
+            data: [...ingredientLoadCall.data, ingredient]
+          });
+        }
+      }
+
 
     useEffect(() => {
         fetch(`http://localhost:3000/ingredient/list`, {
@@ -81,7 +90,7 @@ function Ingredients() {
 
             {getIngredients()}
 
-            <IngredientFormModal show={isModalShown} setAddIngredientShow={setShow} onHide={() => setShow(false)}/>
+            <IngredientFormModal show={isModalShown} setAddIngredientShow={setShow} onHide={() => setShow(false)} onComplete={(ingredient) => handleIngredientAdded(ingredient)}/>
         </div>
     );
 }
