@@ -33,14 +33,14 @@ class RecipeDao {
     return result;
   }
 
-  async updateRecipe(recipe, id) {
+  async updateRecipe(recipe) {
     let recipeList = await this._loadAllRecipes();
     const recipeIndex = recipeList.findIndex(
-      (b) => b.id === id
+        (b) => b.id === recipe.id
     );
     if (recipeIndex < 0) {
       throw new Error(
-        `recipe with given id ${id} does not exists`
+          `recipe with given id ${recipe.id} does not exists`
       );
     } else {
       recipeList[recipeIndex] = {
