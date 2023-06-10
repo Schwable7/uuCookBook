@@ -1,0 +1,32 @@
+.cookbookNameHeader {
+    background-color: #f59898;
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+
+.recipeCard {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fdf6e3;
+  }
+
+.ingredientCard {
+    border-radius: 8px;
+    background-color: #fdf6e3;
+}
+.cardText {
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50vh;
+}
