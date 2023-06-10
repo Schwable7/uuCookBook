@@ -13,27 +13,27 @@ let ingredientDao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
-    name: { type: "string" },
-    description: { type: "string" },
+    name: { type: "string", minLength: 1 },
+    description: { type: "string", minLength: 1 },
     imgUri: { type: "string" },
-    prepTime: { type: "number" },
+    prepTime: { type: "number", minimum: 1},
     ingredients: {
       type: "array",
-      minItems: 0,
+      minItems: 1,
       items: [
         {
           type: "object",
           properties: {
             id: { type: "string" },
-            amount: { type: "number" },
-            unit: { type: "string" },
+            amount: { type: "number", minimum: 1 },
+            unit: { type: "string", minLength: 1 },
           },
           required: ["id", "amount", "unit"],
         }
       ]
     }
   },
-  required: ["name", "description", "ingredients"],
+  required: ["name", "description", "ingredients", "prepTime"]
 };
 
 async function CreateAbl(req, res) {

@@ -8,7 +8,7 @@ let dao = new IngredientDao(
 let schema = {
   type: "object",
   properties: {
-    name: { type: "string" }
+    name: { type: "string", minLength: 1 }
   },
   required: ["name"]
 };
