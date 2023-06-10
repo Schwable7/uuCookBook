@@ -23,7 +23,6 @@ function Recipes() {
         }
       }
 
-
     useEffect(() => {
         fetch(`http://localhost:3000/recipe/list`, {
             method: "GET",
