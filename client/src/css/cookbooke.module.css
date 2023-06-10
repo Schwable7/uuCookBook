@@ -30,3 +30,32 @@
     text-align: center;
     height: 50vh;
 }
+
+.deleteIcon {
+  cursor: pointer;
+  color: gray;
+  font-size: 1.2rem;
+}
+.editIcon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #999;
+}
+
+.editableInput {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: none;
+  padding: 0;
+}
+
+.ingredientName {
+  font-weight: bold;
+  margin-right: 8px;
+}
