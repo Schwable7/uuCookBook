@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import styles from "../../css/cookbooke.module.css";
 import {
@@ -90,6 +90,14 @@ function IngredientGridList(props) {
       });
   };
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (editingIngredientId) {
+      inputRef.current.focus();
+    }
+  }, [editingIngredientId]);
+
   return (
     <div className="row">
       {props.ingredientList.map((ingredient) => (
@@ -107,17 +115,18 @@ function IngredientGridList(props) {
                     value={editedIngredientName}
                     onChange={(e) => setEditedIngredientName(e.target.value)}
                     className={styles.editableInput}
+                    ref={inputRef}
                   />
-                    <div className={styles.editButtons}>
-                      <AiOutlineCheck
-                        onClick={() => handleSaveEdit(ingredient.id)}
-                        className={styles.editIcon}
-                      />
-                      <AiOutlineClose
-                        onClick={handleCancelEdit}
-                        className={styles.editIcon}
-                      />
-                    </div>
+                  <div className={styles.editButtons}>
+                    <AiOutlineCheck
+                      onClick={() => handleSaveEdit(ingredient.id)}
+                      className={styles.editIcon}
+                    />
+                    <AiOutlineClose
+                      onClick={handleCancelEdit}
+                      className={styles.editIcon}
+                    />
+                  </div>
                 </>
               ) : (
                 <>
