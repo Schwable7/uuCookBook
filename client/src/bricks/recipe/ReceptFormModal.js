@@ -164,10 +164,10 @@ function ReceptFormModal({
       newIngredients.pop();
       return { ...formData, ingredients: newIngredients };
     });
-  
+
     setIngredientCount((prevCount) => Math.max(prevCount - 1, 1));
   };
-  
+
   return (
     <>
       <Modal show={show} onHide={handleClose} size={"lg"}>
@@ -187,7 +187,7 @@ function ReceptFormModal({
                 required={true}
               />
               <Form.Control.Feedback type="invalid">
-                This field is required.
+                Pole nesmí být prázdné.
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -204,7 +204,7 @@ function ReceptFormModal({
                 isInvalid={formData.description === ""}
               />
               <Form.Control.Feedback type="invalid">
-                This field is required.
+                Pole nesmí být prázdné.
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -239,6 +239,7 @@ function ReceptFormModal({
                     <Form.Select
                       value={ingredient.id}
                       onChange={(e) => setIngredientId(e.target.value, index)}
+                      isInvalid={ingredient.id === ""}
                     >
                       <option value=""></option>
                       {ingredientList.map((ingredient) => (
@@ -247,6 +248,11 @@ function ReceptFormModal({
                         </option>
                       ))}
                     </Form.Select>
+                    {ingredient.id === "" && (
+                      <Form.Control.Feedback type="invalid">
+                       Prosím vyberte ingredienci.
+                      </Form.Control.Feedback>
+                    )}
                   </Form.Group>
                   <Form.Group as={Col} className="mb-3">
                     <Form.Label>Počet</Form.Label>
