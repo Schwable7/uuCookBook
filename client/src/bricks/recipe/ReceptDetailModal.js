@@ -54,14 +54,15 @@ function ReceptDetailModal(props) {
           <div className="d-flex flex-row gap-2">
             <div>
               <input
-                type="number"
+                type="range"
                 min={1}
+                max={10}
                 value={portionAmount}
                 onChange={handlePortionAmountChange}
               />
             </div>
             <div>
-            <span>{portionText}</span>
+              <span>{portionAmount }{" "}{portionText}</span>
             </div>
           </div>
         </Modal.Footer>
