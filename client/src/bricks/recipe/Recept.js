@@ -11,7 +11,7 @@ function Recept (props) {
                 <Card.Img variant="top" src={props.recept.imgUri}/>
                 <Card.Body>
                     <div>
-                        <Card.Title>{props.recept.name} </Card.Title>
+                        <Card.Title className={styles.cardTitle}>{props.recept.name} </Card.Title>
                         <Card.Text className={styles.cardText}> {props.recept.description} </Card.Text>
                         <Card.Subtitle>Doba přípravy: {props.recept.prepTime} minut</Card.Subtitle>
                         <ReceptDetailModal
