@@ -8,12 +8,12 @@
     margin: 20px;
     padding: 20px;
     border-radius: 8px;
-    background-color: #fdf6e3;
+    background-color: white;
   }
 
 .ingredientCard {
     border-radius: 8px;
-    background-color: #fdf6e3;
+    background-color: white;
 }
 .cardText {
     overflow: hidden;
@@ -31,6 +31,10 @@
     height: 50vh;
 }
 
+body{
+  min-height: 100vh;
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
 .deleteIcon {
   cursor: pointer;
   color: gray;
@@ -58,4 +62,26 @@
 .ingredientName {
   font-weight: bold;
   margin-right: 8px;
+}
+
+.navbar{
+    border-radius: 20px;
+    background-color: white;
+}
+
+.recipeCard{
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.navbar{
+  background: rgba( 0, 0, 0, 0.15 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 16.5px );
+-webkit-backdrop-filter: blur( 16.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
